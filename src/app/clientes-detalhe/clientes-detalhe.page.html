@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dados Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <img [src]="imagem" *ngIf="imagem" width="100%">
+  <ion-button expand="block" (click)="foto()" color="danger">Mudar Foto</ion-button>
+<form>
+
+<ion-item>
+  <ion-label position="floating">Nome</ion-label>
+  <ion-input type="text" value="{{cliente.nome}}" disabled="true"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Endereço</ion-label>
+  <ion-input type="text" value="{{cliente.endereco}}" disabled="true"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Email</ion-label>
+  <ion-input type="text" value="{{cliente.email}}" disabled="true"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Telefone</ion-label>
+  <ion-input type="text" value="{{cliente.telefone}}" disabled="true"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">CPF</ion-label>
+  <ion-input type="text" value="{{cliente.cpf}}" disabled="true"></ion-input>
+</ion-item>
+<ion-button expand="block" (click)="excluir(cliente)" color="danger">Excluir</ion-button>
+<ion-button expand="block" (click)="atualizar(cliente)" color="primary">Atualizar</ion-button>
+
+</form>
+</ion-content>
