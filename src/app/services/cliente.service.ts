@@ -5,6 +5,10 @@ import { Observable, from, observable } from 'rxjs';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { UtilService } from './ultil.service';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { File } from '@ionic-native/file/ngx';
+
 
 
 
@@ -22,7 +26,11 @@ export class ClienteService {
     private firestore: AngularFirestore,
     private camera: Camera,
     private util : UtilService,
-    private fireStorage : AngularFireStorage,) { }
+    private fireStorage : AngularFireStorage,
+    private fileChooser: FileChooser,
+    private file: File,
+    private webview: WebView,
+ ) { }
 
   cadastrar(obj: any): Observable<any> {
     const observable =
@@ -69,6 +77,31 @@ export class ClienteService {
     }, (err) => {
       observe.error(err);
     })
+  });
+  obterFotoArquivo = new Observable((observe)=>{
+    this.fileChooser.open({ "mime": "image/jpeg" }).then(uri=>{
+
+
+      this.file.resolveLocalFilesystemUrl(uri).then((data: any) => {
+
+        observe.next(this.webview.convertFileSrc(data.nativeURL));
+
+        //ler o arquivo a partir da uri gerado pelo resolveLocalFilesystemUrl
+
+        data.file(file => {
+          var reader = new FileReader();
+          reader.onloadend = (encodeFile: any) => {
+            var fileFinal = encodeFile.target.result;
+            this.fotoBlob = fileFinal;
+           // this.fotoBlob = this.util.dataUriToBlob(fileFinal);
+
+          }
+          reader.readAsDataURL(file);
+        });
+        // fim ler arquivo
+
+      }).catch(e => observe.next(e));
+    })
   })
 
   uploadFoto(nome): Observable<any> {
@@ -79,4 +112,5 @@ export class ClienteService {
     return observable;
   }
 
+ 
 }

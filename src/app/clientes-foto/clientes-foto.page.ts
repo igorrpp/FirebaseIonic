@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
 import { NavController } from '@ionic/angular';
 import { Cliente } from '../model/cliente';
 import { ClienteService } from '../services/cliente.service';
+
 
 @Component({
   selector: 'app-clientes-foto',
@@ -14,9 +14,11 @@ export class ClientesFotoPage implements OnInit {
 
   foto: any = null;
   cliente: Cliente = new Cliente();
+  fotoBlob : any = null;
   constructor(private clienteServ: ClienteService,
     private route: ActivatedRoute,
-    private  navCtrl : NavController){
+    private navCtrl: NavController,
+   ) {
 
   }
 
@@ -36,16 +38,27 @@ export class ClientesFotoPage implements OnInit {
     });
   }
 
-  tirarFoto(){
-    this.clienteServ.obterFotoCamera.subscribe(data=>{
+  tirarFoto() {
+    this.clienteServ.obterFotoCamera.subscribe(data => {
       this.foto = data;
     })
   }
-  enviarFoto(){
-    this.clienteServ.uploadFoto(this.cliente.id).subscribe(data=>{
+
+  obterFoto() {
+    this.clienteServ.obterFotoArquivo.subscribe(data => {
+      this.foto = data;
+    })
+  }
+  enviarFoto() {
+    this.clienteServ.uploadFoto(this.cliente.id).subscribe(data => {
       console.log("Enviado");
-    },err=>{
+      this.navCtrl.navigateBack(['clientes-detalhe', this.cliente.id])
+    }, err => {
       console.log(err);
     })
+
+    /*this.fireStorage.storage.ref().child(`/perfil/${this.cliente.id}.jpg`).put(this.fotoBlob).then(data=>{
+      console.log("Enviado Com sucesso!");
+    });*/
   }
 }

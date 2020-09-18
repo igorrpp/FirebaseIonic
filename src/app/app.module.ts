@@ -14,6 +14,9 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { Camera} from '@ionic-native/camera/ngx';
 import { UtilService } from './services/ultil.service';
 import { AngularFireStorageModule} from '@angular/fire/storage';
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 
 @NgModule({
@@ -34,6 +37,10 @@ import { AngularFireStorageModule} from '@angular/fire/storage';
     SplashScreen,
     Camera,
     UtilService,
+    FileChooser,
+    File,
+    WebView,
+
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
