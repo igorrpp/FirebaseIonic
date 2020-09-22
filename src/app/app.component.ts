@@ -15,17 +15,27 @@ export class AppComponent implements OnInit {
     {
       title: 'Home',
       url: '/clientes',
-      icon: 'people-circle'
+      icon: 'home'
     },
     {
       title: 'Novo CLiente',
       url: '/clientes-novo',
-      icon: 'people-circle'
+      icon: 'person'
+    },
+    {
+      title: 'Maps',
+      url: '/maps',
+      icon: 'map'
+    },
+    {
+      title: 'Maps Geolocation',
+      url: '/maps-geolocation',
+      icon: 'location'
     },
     {
       title: 'Sair',
       url: '/logoff',
-      icon: 'people-circle'
+      icon: 'power'
     },
     
     

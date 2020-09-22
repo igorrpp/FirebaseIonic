@@ -50,6 +50,7 @@ export class ClientesUpdatePage implements OnInit {
 
     this.clientServ.atualizar(this.cliente.id, this.formGroup.value).subscribe(data => {
       console.log(data);
+      this.template.loading;
       this.template.myAlert('Atualizado com sucesso');
     })
   }

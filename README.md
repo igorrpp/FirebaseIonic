@@ -1,2 +1,0 @@
-# FirebaseIonic
-Ionic+Firebase

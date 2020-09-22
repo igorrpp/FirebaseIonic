@@ -17,6 +17,7 @@ import { AngularFireStorageModule} from '@angular/fire/storage';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
     FileChooser,
     File,
     WebView,
+    Geolocation,
 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

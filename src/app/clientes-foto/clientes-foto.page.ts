@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Cliente } from '../model/cliente';
 import { ClienteService } from '../services/cliente.service';
+import { TemplateService } from '../services/template.service';
 
 
 @Component({
@@ -18,6 +19,8 @@ export class ClientesFotoPage implements OnInit {
   constructor(private clienteServ: ClienteService,
     private route: ActivatedRoute,
     private navCtrl: NavController,
+    private template: TemplateService
+
    ) {
 
   }
@@ -45,6 +48,7 @@ export class ClientesFotoPage implements OnInit {
   }
 
   obterFoto() {
+   
     this.clienteServ.obterFotoArquivo.subscribe(data => {
       this.foto = data;
     })
@@ -52,6 +56,7 @@ export class ClientesFotoPage implements OnInit {
   enviarFoto() {
     this.clienteServ.uploadFoto(this.cliente.id).subscribe(data => {
       console.log("Enviado");
+      this.template.myAlert('Foto Enviar com sucesso!');
       this.navCtrl.navigateBack(['clientes-detalhe', this.cliente.id])
     }, err => {
       console.log(err);

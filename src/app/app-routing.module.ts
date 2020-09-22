@@ -55,6 +55,16 @@ const routes: Routes = [
     path: 'clientes-foto/:id',
     loadChildren: () => import('./clientes-foto/clientes-foto.module').then( m => m.ClientesFotoPageModule)
   },
+  {
+    path: 'maps',
+    loadChildren: () => import('./maps/maps.module').then( m => m.MapsPageModule)
+  },
+  {
+    path: 'maps-geolocation',
+    loadChildren: () => import('./maps-geolocation/maps-geolocation.module').then( m => m.MapsGeolocationPageModule)
+  },
+  
+  
   
   
   

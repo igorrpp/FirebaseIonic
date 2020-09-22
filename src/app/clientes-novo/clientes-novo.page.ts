@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClienteService } from '../services/cliente.service';
 import { TemplateService } from '../services/template.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-clientes-novo',
@@ -14,7 +15,8 @@ export class ClientesNovoPage implements OnInit {
 
   constructor(private clienteServ: ClienteService,
     private formBuilder: FormBuilder,
-    private template: TemplateService) {
+    private template: TemplateService,
+    private navCtrl: NavController,) {
     this.iniciarForm();
   }
 
@@ -31,6 +33,7 @@ export class ClientesNovoPage implements OnInit {
           this.template.myAlert('Cadastrado com sucesso');
           //Limpar informações no formulário!
           this.formGroup.reset();
+          //this.navCtrl.navigateBack(['clientes'])
         },
         err => {
           this.template.myAlert('Erro ao cadastrar');
